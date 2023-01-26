@@ -1,11 +1,16 @@
 import Foundation
-import CrossFile
 
-public class CrossFoundation {
+public class CrossFoundationTestHarness {
     public init() {
     }
 
-    public func importantFilesExist() throws -> Bool {
-        return try CrossFile().exists(path: "/dev/null") == true
+    public static func crossFoundationTests() throws {
+        assert(1 == 1)
+    }
+
+    public static func crossFoundationAsyncTests() async throws {
+        assert(2 == 2)
     }
 }
+
+
