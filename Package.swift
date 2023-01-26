@@ -11,13 +11,20 @@ let package = Package(
         .library(name: "CrossFoundation", targets: ["CrossFoundation"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/jectivex/Skiff", branch: "main"),
     ],
     targets: [
         .target(name: "CrossFoundation", dependencies: []),
         .testTarget(name: "CrossFoundationTests", dependencies: [
             "CrossFoundation",
-            .product(name: "Skiff", package: "Skiff", condition: .when(platforms: [.macOS, .linux]))
         ]),
     ]
 )
+
+#if os(macOS) || os(Linux)
+package.dependencies = [
+    .package(url: "https://github.com/jectivex/Skiff", branch: "main"),
+]
+package.targets.last?.dependencies += [
+    .product(name: "Skiff", package: "Skiff", condition: .when(platforms: [.macOS, .linux])),
+]
+#endif

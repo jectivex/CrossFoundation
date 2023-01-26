@@ -1,5 +1,11 @@
 name: CrossFoundation CI
 
+env:
+  PACKAGE_NAME: CrossFoundation
+  DEVELOPER_DIR: /Applications/Xcode_14.1.app/Contents/Developer
+  LINUX_SOURCEKIT_LIB_PATH: /usr/share/swift/usr/lib
+  GRADLE_OPTS: "-Xmx512m"
+
 on:
   push:
     branches: [ main ]
@@ -8,11 +14,6 @@ on:
       - '*'
   schedule:
     - cron:  '0 2,14 * * *'
-
-env:
-  DEVELOPER_DIR: /Applications/Xcode_14.1.app/Contents/Developer
-  LINUX_SOURCEKIT_LIB_PATH: /usr/share/swift/usr/lib
-  GRADLE_OPTS: "-Xmx512m"
 
 jobs:
   linux:
@@ -46,59 +47,21 @@ jobs:
         run: swift test --configuration release -Xswiftc -enable-testing
       - name: Gradle Test (Release)
         run: gradle testReleaseUnitTest --console plain --rerun-tasks --no-daemon
+
+      # Skiff is run as a side-effect of the tests, so we use this to
+      # enforce that none of the Kotlin code differs from the checked-in
+      # code as a result of running Skiff.
       - name: Verify Generated Kotlin Up-to-Date
         run: git diff --exit-code
 
-  ios:
-    if: false # not yet working
-    runs-on: macos-12
-    steps:
-      - uses: actions/checkout@v2
-      - name: Test (Debug)
-        run: xcodebuild clean test -configuration Debug -scheme "CrossFoundation" -sdk "iphonesimulator" -destination "platform=iOS Simulator,name=iPhone 14 Pro"
-      - name: Test (Release)
-        run: xcodebuild clean test -configuration Release -scheme "CrossFoundation" -sdk "iphonesimulator" -destination "platform=iOS Simulator,name=iPhone 14 Pro"
+      # Even though we don't use it on iOS, the presence of the Skiff package
+      # causes the SwiftSyntax binary dependency to be downloaded;
+      # this can probably go away once we have 
+      - name: Fix Package.swift for iOS
+        run: mv Package.swift Package.swift.skiff && grep -v 'Skiff' Package.swift.skiff > Package.swift
 
-  tvos:
-    if: false # not yet working
-    runs-on: macos-12
-    steps:
-      - uses: actions/checkout@v2
-      - name: Test (Debug)
-        run: xcodebuild clean test -configuration Debug -scheme "CrossFoundation" -sdk "appletvsimulator" -destination "platform=tvOS Simulator,name=Apple TV" 
-      - name: Test (Release)
-        run: xcodebuild clean test -configuration Release -scheme "CrossFoundation" -sdk "appletvsimulator" -destination "platform=tvOS Simulator,name=Apple TV" 
-
-
-  api-doc:
-    if: false # not yet working
-    runs-on: macos-12 # needed to be able to document SwiftUI
-    timeout-minutes: 20
-    steps:
-      - uses: actions/checkout@v2
-      - name: Build documentation
-        run: |
-          swift -version
-          export SWIFTPM_ENABLE_COMMAND_PLUGINS=1
-          export DOCC_JSON_PRETTYPRINT="YES"
-
-          # insert the docc dependency manually using sed to avoid
-          # polluting Package.swift with unnecessary dependencies
-          sed -I "" 's;^ *var dependencies: \[Package.Dependency] = \[$;    var dependencies: [Package.Dependency] = [ .package(name: "swift-docc-plugin", url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"), ;1' Package.swift
-
-          cat Package.swift
-
-          swift package --allow-writing-to-directory docs \
-            generate-documentation --target CrossFoundation \
-            --disable-indexing \
-            --transform-for-static-hosting \
-            --hosting-base-path CrossFoundation \
-            --output-path docs
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: '.'
-
+      - name: iOS Tests (Debug)
+        run: xcodebuild test -configuration Debug -scheme "${{ env.PACKAGE_NAME }}" -sdk "iphonesimulator" -destination "platform=iOS Simulator,name=iPhone 14 Pro"
+      - name: iOS Tests (Release)
+        run: xcodebuild test -configuration Release -scheme "${{ env.PACKAGE_NAME }}" -sdk "iphonesimulator" -destination "platform=iOS Simulator,name=iPhone 14 Pro"
 
