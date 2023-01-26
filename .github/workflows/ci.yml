@@ -12,19 +12,22 @@ on:
 env:
   DEVELOPER_DIR: /Applications/Xcode_14.1.app/Contents/Developer
   LINUX_SOURCEKIT_LIB_PATH: /usr/share/swift/usr/lib
+  GRADLE_OPTS: "-Xmx512m"
 
 jobs:
   linux:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Test (Debug)
+      - name: Swift Test (Debug)
         run: swift test --configuration debug
-      - name: Test (Release)
+      - name: Gradle Test (Debug)
+        run: gradle testDebugUnitTest --console plain --rerun-tasks --no-daemon
+      - name: Swift Test (Release)
         run: swift test --configuration release -Xswiftc -enable-testing
-      - name: Test (Gradle)
-        run: GRADLE_OPTS="-Xmx512m" gradle test --console plain --rerun-tasks --no-daemon
-      - name: Verify Pristine
+      - name: Gradle Test (Release)
+        run: gradle testReleaseUnitTest --console plain --rerun-tasks --no-daemon
+      - name: Verify Generated Kotlin Up-to-Date
         run: git diff --exit-code
 
   macos:
@@ -35,13 +38,15 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
       - uses: actions/checkout@v2
-      - name: Test (Debug)
+      - name: Swift Test (Debug)
         run: swift test --configuration debug
-      - name: Test (Release)
+      - name: Gradle Test (Debug)
+        run: gradle testDebugUnitTest --console plain --rerun-tasks --no-daemon
+      - name: Swift Test (Release)
         run: swift test --configuration release -Xswiftc -enable-testing
-      - name: Test (Gradle)
-        run: GRADLE_OPTS="-Xmx512m" gradle test --console plain --rerun-tasks --no-daemon
-      - name: Verify Pristine
+      - name: Gradle Test (Release)
+        run: gradle testReleaseUnitTest --console plain --rerun-tasks --no-daemon
+      - name: Verify Generated Kotlin Up-to-Date
         run: git diff --exit-code
 
   ios:
