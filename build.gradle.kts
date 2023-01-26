@@ -1,7 +1,4 @@
-allprojects {
-    group = "CrossFoundation"
-    buildDir = file(".build") // same as SPM
-}
+group = "CrossFoundation"
 
 plugins {
     id("org.jetbrains.kotlin.android") version "1.7.+"
@@ -16,24 +13,21 @@ repositories {
 dependencies {
     testImplementation("junit:junit:4.+")
     testImplementation("org.robolectric:robolectric:4.+")
-
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:+")
-
 }
 
 android {
-    namespace = "CrossFoundation"
-
     // gradle defaults to sources being in `src/main/java/PACKAGE/`, but SPM expects `Sources/PACKAGE/`
     sourceSets.getByName("main") {
-        kotlin.setSrcDirs(listOf("Sources/${namespace}"))
+        kotlin.setSrcDirs(listOf("Sources/${group}"))
     }
 
     // gradle defaults to sources being in `src/test/java/PACKAGE/`, but SPM expects `Tests/PACKAGETests/`
     sourceSets.getByName("test") {
-        kotlin.setSrcDirs(listOf("Tests/${namespace}Tests"))
+        kotlin.setSrcDirs(listOf("Tests/${group}Tests"))
     }
 
+    namespace = group as String
     compileSdkVersion(33)
     defaultConfig {
         minSdk = 24
@@ -52,3 +46,5 @@ tasks.withType<Test> {
         this.showStandardStreams = true
     }
 }
+
+buildDir = file(".build") // same as Swift Package Manager
