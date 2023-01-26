@@ -102,6 +102,7 @@ public func readData(fromPath filePath: String) throws -> Data {
 #if os(Android)
 /// An interface to the file system compatible with ``Foundation.FileManager``
 public final class FileManager {
+    /// Returns the shared single file manager
     public static let `default` = FileManager()
 
     private init() {
@@ -119,6 +120,8 @@ public final class FileManager {
 }
 #else
 import class Foundation.FileManager
+
+public typealias FileManager = Foundation.FileManager
 
 public extension FileManager {
     @available(*, deprecated, message: "file URLs not yet implemented on Kotlin side")
