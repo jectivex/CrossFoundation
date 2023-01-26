@@ -4,6 +4,12 @@ import Foundation
 
 /// A cross-platform random number generator
 public class Random {
+    /// The shared random singleton
+    public static let shared = Random()
+
+    private init() {
+    }
+
     #if os(Android)
     //let random: java.util.Random = java.util.Random()
     let random: java.util.Random = java.security.SecureRandom()
@@ -159,7 +165,7 @@ public class CrossFoundationTestHarness {
     public static func crossFoundationTests() throws {
         dbg("running: crossFoundationTests")
         assert(1 == 1)
-        assert(Random().randomDouble() != Random().randomDouble())
+        assert(Random.shared.randomDouble() != Random.shared.randomDouble())
         assert("abc".pad(to: 5, with: "+") == "abc++")
     }
 

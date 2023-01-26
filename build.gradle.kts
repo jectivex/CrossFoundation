@@ -17,17 +17,13 @@ dependencies {
 }
 
 android {
-    // gradle defaults to sources being in `src/main/java/PACKAGE/`, but SPM expects `Sources/PACKAGE/`
+    namespace = group as String
     sourceSets.getByName("main") {
         kotlin.setSrcDirs(listOf("Sources/${group}"))
     }
-
-    // gradle defaults to sources being in `src/test/java/PACKAGE/`, but SPM expects `Tests/PACKAGETests/`
     sourceSets.getByName("test") {
         kotlin.setSrcDirs(listOf("Tests/${group}Tests"))
     }
-
-    namespace = group as String
     compileSdkVersion(33)
     defaultConfig {
         minSdk = 24

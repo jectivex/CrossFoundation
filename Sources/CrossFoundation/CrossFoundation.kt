@@ -2,6 +2,13 @@ package CrossFoundation
 
 // MARK: Random
 open class Random {
+    companion object {
+        val shared: Random = Random()
+    }
+
+    private constructor() {
+    }
+
     //let random: java.util.Random = java.util.Random()
     internal val random: java.util.Random = java.security.SecureRandom()
 
@@ -86,7 +93,7 @@ open class CrossFoundationTestHarness {
         fun crossFoundationTests() {
             dbg(value = "running: crossFoundationTests")
             assert(1 == 1)
-            assert(Random().randomDouble() != Random().randomDouble())
+            assert(Random.shared.randomDouble() != Random.shared.randomDouble())
             assert("abc".pad(cellSpan = 5, padding = "+") == "abc++")
         }
 
