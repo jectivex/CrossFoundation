@@ -14,6 +14,7 @@ dependencies {
     testImplementation("junit:junit:4.+")
     testImplementation("org.robolectric:robolectric:4.+")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:+")
+    androidTestImplementation("com.android.support.test:runner:+")
 }
 
 android {
