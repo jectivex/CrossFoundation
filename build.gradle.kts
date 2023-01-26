@@ -1,9 +1,7 @@
 allprojects {
     group = "CrossFoundation"
-    version = "0.1.1"
+    buildDir = file(".build") // same as SPM
 }
-
-buildDir = file(".build") // same as SPM
 
 plugins {
     id("org.jetbrains.kotlin.android") version "1.7.+"
