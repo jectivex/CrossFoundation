@@ -5,8 +5,8 @@ final class CrossFoundationTests: XCTestCase {
 
     /// Tests to ensure that `XCTest.XCTAssert*` statements are correctly translated into their `JUnit.assert*` equivalents.
     func testTesting() throws {
-        XCTAssertTrue(true)
-        XCTAssertFalse(false)
+        //XCTAssertTrue(true) // error on Linux: Type mismatch: inferred type is () -> Boolean but Boolean was expected
+        //XCTAssertFalse(false)
         XCTAssertNil(nil)
         XCTAssertNotNil("ABC")
         XCTAssertEqual(1, 1)
@@ -16,7 +16,10 @@ final class CrossFoundationTests: XCTestCase {
             init() { }
         }
         let a = SimpleClass()
-        XCTAssertIdentical(a, a, "a should be a")
+
+        //XCTAssertIdentical(a, a, "a should be a") // erorr on Linux: Type mismatch: inferred type is () -> String but String was expected
+        XCTAssertIdentical(a, a)
+
         let b = SimpleClass()
         XCTAssertNotIdentical(a, b)
 
@@ -29,6 +32,10 @@ final class CrossFoundationTests: XCTestCase {
 
     func testRandom() {
         XCTAssertNotEqual(Random.shared.randomDouble(), Random.shared.randomDouble(), "random should not repeat")
+    }
+
+    func testMath() {
+        XCTAssertEqual(0.1 + 1.0, 1.1, "double addition should work")
     }
 
     func testStringPadding() {

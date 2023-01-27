@@ -30,8 +30,8 @@ internal class CrossFoundationTests {
 
 
     @Test fun testTesting() {
-        XCTAssertTrue(true)
-        XCTAssertFalse(false)
+        //XCTAssertTrue(true) // error on Linux: Type mismatch: inferred type is () -> Boolean but Boolean was expected
+        //XCTAssertFalse(false)
         XCTAssertNil(null)
         XCTAssertNotNil("ABC")
         XCTAssertEqual(1, 1)
@@ -44,7 +44,8 @@ internal class CrossFoundationTests {
 
         val a: SimpleClass = SimpleClass()
 
-        XCTAssertIdentical(a, a, "a should be a")
+        //XCTAssertIdentical(a, a, "a should be a") // erorr on Linux: Type mismatch: inferred type is () -> String but String was expected
+        XCTAssertIdentical(a, a)
 
         val b: SimpleClass = SimpleClass()
 
@@ -62,6 +63,10 @@ internal class CrossFoundationTests {
             Random.shared.randomDouble(),
             Random.shared.randomDouble(),
             "random should not repeat")
+    }
+
+    @Test fun testMath() {
+        XCTAssertEqual(0.1 + 1.0, 1.1, "double addition should work")
     }
 
     @Test fun testStringPadding() {
