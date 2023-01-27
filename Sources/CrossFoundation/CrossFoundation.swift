@@ -81,9 +81,9 @@ import struct Foundation.URL
 public typealias URL = Foundation.URL
 
 extension URL {
-    /// Convenience init to match java.net.URL string constructor.
-    public init?(_ stringURL: String) {
-        self.init(string: stringURL)
+    @available(*, deprecated, message: "no kotlin equivalent")
+    public var relativePath: String? {
+        fatalError("no kotlin equivalent")
     }
 }
 #endif

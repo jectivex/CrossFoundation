@@ -67,7 +67,7 @@ internal class CrossFoundationTests {    //fun XCTUnwrap(a: Any?) = assertNotNul
     }
 
     @Test fun testMath() {
-        XCTAssertEqual(0.1 + 1.0, 1.1, "double addition should work")
+        XCTAssertEqual(0.1 + 1.0, 1.1)
     }
 
     @Test fun testStringPadding() {
@@ -81,12 +81,11 @@ internal class CrossFoundationTests {    //fun XCTUnwrap(a: Any?) = assertNotNul
         XCTAssertEqual("/path/to/file.ext", url?.path)
         XCTAssertEqual("www.example.org", url?.host)
         XCTAssertEqual("ext", url?.pathExtension)
-
-        //        XCTAssertEqual("", url?.relativePath)
         XCTAssertEqual("file.ext", url?.lastPathComponent)
-
-        //        XCTAssertEqual("", url?.query)
-        //XCTAssertEqual(nil, url?.port)
         XCTAssertEqual(false, url?.isFileURL)
+
+        //XCTAssertEqual(nil, url?.relativePath) // should give a deprecation warning: no kotlin equivalent
+        //XCTAssertEqual(nil, url?.query)
+        //XCTAssertEqual(nil, url?.port)
     }
 }
