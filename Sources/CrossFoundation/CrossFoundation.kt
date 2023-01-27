@@ -45,6 +45,15 @@ fun String.pad(cellSpan: Int, padding: String = " ", rightAlign: Boolean = false
 // MARK: URL
 typealias URL = java.net.URL
 
+val URL.absoluteString: String
+    get() = toExternalForm()
+val URL.pathExtension: String?
+    get() = path.split(".").last()
+val URL.lastPathComponent: String?
+    get() = path.split("/").last()
+val URL.isFileURL: Boolean
+    get() = this.`protocol` == "file"
+
 // MARK: Data
 typealias Data = kotlin.ByteArray
 

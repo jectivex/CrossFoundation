@@ -57,6 +57,24 @@ public extension Double {
 
 #if os(Android)
 public typealias URL = java.net.URL
+
+extension URL {
+    public var absoluteString: String {
+        toExternalForm()
+    }
+
+    public var pathExtension: String? {
+        path.split(".").last()
+    }
+
+    public var lastPathComponent: String? {
+        path.split("/").last()
+    }
+
+    public var isFileURL: Bool {
+        self.`protocol` == "file"
+    }
+}
 #else
 import struct Foundation.URL
 
@@ -64,7 +82,7 @@ public typealias URL = Foundation.URL
 
 extension URL {
     /// Convenience init to match java.net.URL string constructor.
-    public init!(_ stringURL: String) {
+    public init?(_ stringURL: String) {
         self.init(string: stringURL)
     }
 }

@@ -41,6 +41,20 @@ final class CrossFoundationTests: XCTestCase {
     func testStringPadding() {
         XCTAssertEqual("abc++", "abc".pad(to: 5, with: "+"))
     }
+
+    func testURLs() {
+        let url: URL? = URL(string: "https://www.example.org/path/to/file.ext")
+        XCTAssertEqual("https://www.example.org/path/to/file.ext", url?.absoluteString)
+        XCTAssertEqual("/path/to/file.ext", url?.path)
+        XCTAssertEqual("www.example.org", url?.host)
+        XCTAssertEqual("ext", url?.pathExtension)
+//        XCTAssertEqual("", url?.relativePath)
+        XCTAssertEqual("file.ext", url?.lastPathComponent)
+//        XCTAssertEqual("", url?.query)
+        //XCTAssertEqual(nil, url?.port)
+        XCTAssertEqual(false, url?.isFileURL)
+    }
+
 }
 
 #if !GRYPHON

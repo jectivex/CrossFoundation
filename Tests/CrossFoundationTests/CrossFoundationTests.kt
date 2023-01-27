@@ -9,7 +9,8 @@ import kotlinx.coroutines.test.*
 
 @RunWith(org.robolectric.RobolectricTestRunner::class)
 @org.robolectric.annotation.Config(manifest=org.robolectric.annotation.Config.NONE)
-internal class CrossFoundationTests {
+internal class CrossFoundationTests {    //fun XCTUnwrap(a: Any?) = assertNotNull(a)
+
     fun XCTAssertTrue(a: Boolean) = assertTrue(a)
     fun XCTAssertTrue(a: Boolean, msg: String) = assertTrue(msg, a)
     fun XCTAssertFalse(a: Boolean) = assertFalse(a)
@@ -71,5 +72,21 @@ internal class CrossFoundationTests {
 
     @Test fun testStringPadding() {
         XCTAssertEqual("abc++", "abc".pad(5, "+"))
+    }
+
+    @Test fun testURLs() {
+        val url: URL? = URL("https://www.example.org/path/to/file.ext")
+
+        XCTAssertEqual("https://www.example.org/path/to/file.ext", url?.absoluteString)
+        XCTAssertEqual("/path/to/file.ext", url?.path)
+        XCTAssertEqual("www.example.org", url?.host)
+        XCTAssertEqual("ext", url?.pathExtension)
+
+        //        XCTAssertEqual("", url?.relativePath)
+        XCTAssertEqual("file.ext", url?.lastPathComponent)
+
+        //        XCTAssertEqual("", url?.query)
+        //XCTAssertEqual(nil, url?.port)
+        XCTAssertEqual(false, url?.isFileURL)
     }
 }
