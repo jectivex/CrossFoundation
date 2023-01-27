@@ -158,24 +158,3 @@ public enum JSON {
     case obj(dictionary: [String: JSON])
 }
 
-
-
-
-public class CrossFoundationTestHarness {
-    public init() {
-    }
-
-    public static func crossFoundationTests() throws {
-        dbg("running: crossFoundationTests")
-        assert(1 == 1)
-        assert(Random.shared.randomDouble() != Random.shared.randomDouble())
-        assert("abc".pad(to: 5, with: "+") == "abc++")
-    }
-
-    public static func crossFoundationAsyncTests() async throws {
-        dbg("running: crossFoundationAsyncTests")
-        assert(2 == 2)
-    }
-}
-
-

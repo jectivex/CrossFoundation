@@ -87,22 +87,3 @@ sealed class JSON {
     class Arr(val array: List<JSON>): JSON()
     class Obj(val dictionary: Map<String, JSON>): JSON()
 }
-
-open class CrossFoundationTestHarness {
-    companion object {
-        fun crossFoundationTests() {
-            dbg(value = "running: crossFoundationTests")
-            assert(1 == 1)
-            assert(Random.shared.randomDouble() != Random.shared.randomDouble())
-            assert("abc".pad(cellSpan = 5, padding = "+") == "abc++")
-        }
-
-        fun crossFoundationAsyncTests() {
-            dbg(value = "running: crossFoundationAsyncTests")
-            assert(2 == 2)
-        }
-    }
-
-    constructor() {
-    }
-}

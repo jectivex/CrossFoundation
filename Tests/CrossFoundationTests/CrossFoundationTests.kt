@@ -1,6 +1,5 @@
-package CrossSQL
+package CrossFoundation
 
-import CrossFoundation.*
 import org.junit.*
 import org.junit.Assert.*
 import org.junit.runner.RunWith
@@ -8,23 +7,31 @@ import org.junit.runner.RunWith
 import kotlinx.coroutines.*
 import kotlinx.coroutines.test.*
 
-import java.io.BufferedReader
-import java.net.HttpURLConnection
-import java.net.URL
-
-
-/** Hand-written test case that simply calls `Connection.testDatabase()` */
 @RunWith(org.robolectric.RobolectricTestRunner::class)
-@org.robolectric.annotation.Config(manifest=org.robolectric.annotation.Config.NONE) // otherwise warns about missing AndroidManifest.xml
-class CrossSQLTest {
-    @Test
-    fun testCrossFoundation() {
-        CrossFoundationTestHarness.crossFoundationTests()
+@org.robolectric.annotation.Config(manifest=org.robolectric.annotation.Config.NONE)
+internal class CrossFoundationTests {
+    @Test fun testTesting() {
+        assertTrue(true)
+        assertFalse(false)
+        assertNull(null)
+        assertNotNull("ABC")
+        assertEquals(1, 1)
+        assertNotEquals("X", "Y")
+        assertSame(this, this)
+        assertNotSame(this, CrossFoundationTests())
+
+        // not supported by JUnit
+        // XCTAssertGreaterThan(1, 0)
+        // XCTAssertLessThan(0, 1)
+        // XCTAssertLessThanOrEqual(1, 1)
+        // XCTAssertGreaterThanOrEqual(1, 1)
     }
 
-    @Test
-    @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class) // otherwise warning: “CrossSQLTest.kt: (26, 31): This declaration needs opt-in. Its usage should be marked with '@kotlinx.coroutines.ExperimentalCoroutinesApi' or '@OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)'”
-    fun testDatabaseAsync() = runTest {
-        CrossFoundationTestHarness.crossFoundationAsyncTests()
+    @Test fun testRandom() {
+        assertNotEquals(Random.shared.randomDouble(), Random.shared.randomDouble())
+    }
+
+    @Test fun testStringPadding() {
+        assert("abc".pad(5, "+") == "abc++")
     }
 }
