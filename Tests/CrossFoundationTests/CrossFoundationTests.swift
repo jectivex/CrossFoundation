@@ -11,8 +11,14 @@ final class CrossFoundationTests: XCTestCase {
         XCTAssertNotNil("ABC")
         XCTAssertEqual(1, 1)
         XCTAssertNotEqual("X", "Y")
-        XCTAssertIdentical(self, self)
-        XCTAssertNotIdentical(self, CrossFoundationTests())
+
+        class SimpleClass {
+            init() { }
+        }
+        let a = SimpleClass()
+        XCTAssertIdentical(a, a, "a should be a")
+        let b = SimpleClass()
+        XCTAssertNotIdentical(a, b)
 
         // not supported by JUnit
         // XCTAssertGreaterThan(1, 0)
@@ -26,7 +32,7 @@ final class CrossFoundationTests: XCTestCase {
     }
 
     func testStringPadding() {
-        assert("abc".pad(to: 5, with: "+") == "abc++")
+        XCTAssertEqual("abc++", "abc".pad(to: 5, with: "+"))
     }
 }
 
