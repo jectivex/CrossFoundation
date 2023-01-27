@@ -28,7 +28,7 @@ final class CrossFoundationTests: XCTestCase {
     }
 
     func testRandom() {
-        XCTAssertNotEqual(Random.shared.randomDouble(), Random.shared.randomDouble())
+        XCTAssertNotEqual(Random.shared.randomDouble(), Random.shared.randomDouble(), "random should not repeat")
     }
 
     func testStringPadding() {

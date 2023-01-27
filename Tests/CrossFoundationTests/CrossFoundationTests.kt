@@ -45,7 +45,6 @@ internal class CrossFoundationTests {
         val a: SimpleClass = SimpleClass()
 
         XCTAssertIdentical(a, a, "a should be a")
-        XCTAssertNotIdentical(a, a, "a should be a")
 
         val b: SimpleClass = SimpleClass()
 
@@ -59,7 +58,10 @@ internal class CrossFoundationTests {
     }
 
     @Test fun testRandom() {
-        XCTAssertNotEqual(Random.shared.randomDouble(), Random.shared.randomDouble())
+        XCTAssertNotEqual(
+            Random.shared.randomDouble(),
+            Random.shared.randomDouble(),
+            "random should not repeat")
     }
 
     @Test fun testStringPadding() {
