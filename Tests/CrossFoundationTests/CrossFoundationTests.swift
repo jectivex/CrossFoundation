@@ -21,7 +21,6 @@ final class CrossFoundationTests: XCTestCase {
 
         let a = SimpleClass(value: 1)
 
-        //XCTAssertIdentical(a, a, "a should be a") // erorr on Linux: Type mismatch: inferred type is () -> String but String was expected
         XCTAssertIdentical(a, a)
 
         let b = SimpleClass(value: 1)
@@ -41,7 +40,10 @@ final class CrossFoundationTests: XCTestCase {
 
     func testMath() {
         //XCTAssertEqual(0.1 + 1.0, 1.1)
-        XCTAssertEqual(1 + 2, 3, "math should work")
+
+        // error on Linux: Type mismatch: inferred type is () -> String but String was expected
+        // it seems to be inferring the type as a () -> String
+        XCTAssertEqual(1 + 2, 3, "math should work" as String)
     }
 
     func testStringPadding() {
