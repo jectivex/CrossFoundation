@@ -28,16 +28,6 @@ fun dbg(value: String) {
     System.out.println("DEBUG Kotlin: ${value}")
 }
 
-// MARK: JSON
-sealed class JSON {
-    class Nul: JSON()
-    class Bol(val bol: Boolean): JSON()
-    class Num(val num: Double): JSON()
-    class Str(val str: String): JSON()
-    class Arr(val arr: List<JSON>): JSON()
-    class Obj(val obj: Map<String, JSON>): JSON()
-}
-
 //
 //  WIP:
 // ===============

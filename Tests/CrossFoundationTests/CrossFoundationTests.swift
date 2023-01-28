@@ -37,13 +37,7 @@ final class CrossFoundationTests: XCTestCase {
     }
 
     func testMath() throws {
-        //XCTAssertEqual(0.1 + 1.0, 1.1)
-        if isLinuxJava { return } // assertEquals() is assuming closure types () -> String rather than just strings, only on Linux
-
-        // error on Linux: Type mismatch: inferred type is () -> String but String was expected
-        // it seems to be inferring the type as a () -> String
-        //XCTAssertEqual(1 + 2, 3, "math should work" as String)
-        XCTAssertEqual(1 + 2 as Int, 3 as Int)
+        XCTAssertEqual(0.1 + 1.0, 1.1, "math should work")
     }
 
     func testStringPadding() throws {
@@ -64,7 +58,6 @@ final class CrossFoundationTests: XCTestCase {
 
     func testURLs() throws {
         let url: URL? = URL.init(string: "https://www.example.org/path/to/file.ext")
-        if isLinuxJava { return } // assertEquals() is assuming closure types () -> String rather than just strings, only on Linux
         XCTAssertEqual("https://www.example.org/path/to/file.ext", url?.absoluteString)
         XCTAssertEqual("/path/to/file.ext", url?.path)
         XCTAssertEqual("www.example.org", url?.host)
@@ -98,6 +91,11 @@ final class CrossFoundationTests: XCTestCase {
         // let d: Date = Date.create(72348932.0) // SourceKit failed to get an expression's type
         //XCTAssertEqual(72348932.0, d.timeIntervalSince1970)
     }
+
+    func testJSON() throws {
+        //XCTAssertEqual(JSum.num(1.0), JSum.num(1.0), "JSum should equal")
+    }
+
 }
 
 #if !GRYPHON
