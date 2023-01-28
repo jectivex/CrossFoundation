@@ -76,17 +76,38 @@ internal class CrossFoundationTests {    //fun XCTUnwrap(a: Any?) = assertNotNul
     }
 
     @Test fun testURLs() {
-        val url: URL? = URL("https://www.example.org/path/to/file.ext")
+        val url: URL? = URL.init("https://www.example.org/path/to/file.ext")
 
         XCTAssertEqual("https://www.example.org/path/to/file.ext", url?.absoluteString)
+        XCTAssertEqual("/path/to/file.ext", url?.path)
+        XCTAssertEqual("www.example.org", url?.host)
+        XCTAssertEqual("ext", url?.pathExtension)
 
-        //XCTAssertEqual("/path/to/file.ext", url?.path)
-        //XCTAssertEqual("www.example.org", url?.host)
-        //XCTAssertEqual("ext", url?.pathExtension)
         //XCTAssertEqual("file.ext", url?.lastPathComponent)
         //XCTAssertEqual(false, url?.isFileURL)
         //XCTAssertEqual(nil, url?.relativePath) // should give a deprecation warning: no kotlin equivalent
         //XCTAssertEqual(nil, url?.query)
         //XCTAssertEqual(nil, url?.port)
+    }
+
+    @Test fun testData() {
+        //XCTAssertEqual(0, try Data(contentsOfFile: "/dev/null").count) // parameter name is lost externally
+        XCTAssertNotEqual(0, Data.init("/etc/hosts").count)
+        XCTAssertNotEqual(0, Data.init(URL.init("/etc/hosts", false)).count)
+    }
+
+    @Test fun testUUID() {
+        XCTAssertNotEqual(UUID(), UUID())
+        XCTAssertNotEqual("", UUID().uuidString)
+        println("UUID: ${UUID().uuidString}")
+    }
+
+    @Test fun testDate() {
+        val date: Date = Date()
+
+        XCTAssertNotEqual(0, date.timeIntervalSince1970)
+
+        // let d: Date = Date.create(72348932.0) // SourceKit failed to get an expression's type
+        //XCTAssertEqual(72348932.0, d.timeIntervalSince1970)
     }
 }

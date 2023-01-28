@@ -1,5 +1,6 @@
 import XCTest
 @testable import CrossFoundation
+import Foundation
 
 final class CrossFoundationTests: XCTestCase {
 
@@ -44,11 +45,11 @@ final class CrossFoundationTests: XCTestCase {
     }
 
     func testURLs() {
-        let url: URL? = URL(string: "https://www.example.org/path/to/file.ext")
+        let url: URL? = URL.init(string: "https://www.example.org/path/to/file.ext")
         XCTAssertEqual("https://www.example.org/path/to/file.ext", url?.absoluteString)
-        //XCTAssertEqual("/path/to/file.ext", url?.path)
-        //XCTAssertEqual("www.example.org", url?.host)
-        //XCTAssertEqual("ext", url?.pathExtension)
+        XCTAssertEqual("/path/to/file.ext", url?.path)
+        XCTAssertEqual("www.example.org", url?.host)
+        XCTAssertEqual("ext", url?.pathExtension)
 
         //XCTAssertEqual("file.ext", url?.lastPathComponent)
         //XCTAssertEqual(false, url?.isFileURL)
@@ -59,6 +60,25 @@ final class CrossFoundationTests: XCTestCase {
         //XCTAssertEqual(nil, url?.port)
     }
 
+    func testData() throws {
+        //XCTAssertEqual(0, try Data(contentsOfFile: "/dev/null").count) // parameter name is lost externally
+        XCTAssertNotEqual(0, try Data.init(contentsOfFile: "/etc/hosts").count)
+        XCTAssertNotEqual(0, try Data.init(contentsOf: URL.init(fileURLWithPath: "/etc/hosts", isDirectory: false)).count)
+    }
+
+    func testUUID() throws {
+        XCTAssertNotEqual(UUID(), UUID())
+        XCTAssertNotEqual("", UUID().uuidString)
+        print("UUID: \(UUID().uuidString)")
+    }
+
+    func testDate() throws {
+        let date = Date()
+        XCTAssertNotEqual(0, date.timeIntervalSince1970)
+
+        // let d: Date = Date.create(72348932.0) // SourceKit failed to get an expression's type
+        //XCTAssertEqual(72348932.0, d.timeIntervalSince1970)
+    }
 }
 
 #if !GRYPHON
