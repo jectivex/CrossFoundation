@@ -42,6 +42,16 @@ extension ProcessInfo {
         false
     }
 
+    @available(*, deprecated, message: "unavailable on iOS")
+    public var userName: String {
+        fatalError("unavailable on iOS")
+    }
+
+    @available(*, deprecated, message: "unavailable on iOS")
+    public var fullUserName: String {
+        fatalError("unavailable on iOS")
+    }
+
     public var osName: String? {
         nil
     }

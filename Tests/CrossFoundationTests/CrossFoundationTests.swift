@@ -59,8 +59,8 @@ final class CrossFoundationTests: XCTestCase {
     }
 
     func testProcessInfo() throws {
-        print("testProcessInfo: userName: \(ProcessInfo.processInfo.userName) hostName: \(ProcessInfo.processInfo.hostName) osName: \(ProcessInfo.processInfo.osName ?? "")")
-        XCTAssertNotEqual("", ProcessInfo.processInfo.userName)
+        print("testProcessInfo: hostName: \(ProcessInfo.processInfo.hostName) osName: \(ProcessInfo.processInfo.osName ?? "")")
+        //XCTAssertNotEqual("", ProcessInfo.processInfo.userName)
         XCTAssertNotEqual("", ProcessInfo.processInfo.hostName)
         XCTAssertNotEqual("", ProcessInfo.processInfo.osName)
     }

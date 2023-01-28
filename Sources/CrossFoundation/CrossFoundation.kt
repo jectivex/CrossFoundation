@@ -31,11 +31,11 @@ fun dbg(value: String) {
 // MARK: JSON
 sealed class JSON {
     class Nul: JSON()
-    class Bol(val boolean: Boolean): JSON()
-    class Num(val number: Double): JSON()
-    class Str(val string: String): JSON()
-    class Arr(val array: List<JSON>): JSON()
-    class Obj(val dictionary: Map<String, JSON>): JSON()
+    class Bol(val bol: Boolean): JSON()
+    class Num(val num: Double): JSON()
+    class Str(val str: String): JSON()
+    class Arr(val arr: List<JSON>): JSON()
+    class Obj(val obj: Map<String, JSON>): JSON()
 }
 
 //

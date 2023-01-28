@@ -44,11 +44,11 @@ public func dbg(_ value: String) {
 /// A JSON type, which can be null, boolean, number, string, array, or object.
 public enum JSON {
     case nul
-    case bol(_ boolean: Bool)
-    case num(_ number: Double)
-    case str(_ string: String)
-    case arr(_ array: [JSON])
-    case obj(_ dictionary: [String: JSON])
+    case bol(_ bol: Bool)
+    case num(_ num: Double)
+    case str(_ str: String)
+    case arr(_ arr: [JSON])
+    case obj(_ obj: [String: JSON])
 }
 
 //
