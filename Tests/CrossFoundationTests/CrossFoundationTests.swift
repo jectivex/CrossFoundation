@@ -1,6 +1,5 @@
 import XCTest
 @testable import CrossFoundation
-import Foundation
 
 final class CrossFoundationTests: XCTestCase {
 
@@ -34,24 +33,30 @@ final class CrossFoundationTests: XCTestCase {
         // XCTAssertGreaterThanOrEqual(1, 1)
     }
 
-    func testRandom() {
+    func testRandom() throws {
         XCTAssertNotEqual(Random.shared.randomDouble(), Random.shared.randomDouble(), "random should not repeat")
     }
 
-    func testMath() {
+    func testMath() throws {
         //XCTAssertEqual(0.1 + 1.0, 1.1)
 
         // error on Linux: Type mismatch: inferred type is () -> String but String was expected
         // it seems to be inferring the type as a () -> String
         //XCTAssertEqual(1 + 2, 3, "math should work" as String)
-        XCTAssertEqual(1 + 2, 3)
+        XCTAssertEqual(1 + 2 as Int, 3 as Int)
     }
 
-    func testStringPadding() {
+    func testStringPadding() throws {
         XCTAssertEqual("abc++", "abc".pad(to: 5, with: "+"))
     }
 
-    func testURLs() {
+    func testProcessInfo() throws {
+        print("testProcessInfo: userName: \(ProcessInfo.processInfo.userName) hostName: \(ProcessInfo.processInfo.hostName)")
+        XCTAssertNotEqual("", ProcessInfo.processInfo.userName)
+        XCTAssertNotEqual("", ProcessInfo.processInfo.hostName)
+    }
+
+    func testURLs() throws {
         let url: URL? = URL.init(string: "https://www.example.org/path/to/file.ext")
         XCTAssertEqual("https://www.example.org/path/to/file.ext", url?.absoluteString)
         XCTAssertEqual("/path/to/file.ext", url?.path)
@@ -80,7 +85,7 @@ final class CrossFoundationTests: XCTestCase {
     }
 
     func testDate() throws {
-        let date = Date()
+        let date: Date = Date()
         XCTAssertNotEqual(0, date.timeIntervalSince1970)
 
         // let d: Date = Date.create(72348932.0) // SourceKit failed to get an expression's type

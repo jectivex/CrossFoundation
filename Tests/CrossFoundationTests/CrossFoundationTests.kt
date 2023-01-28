@@ -54,11 +54,18 @@ internal class CrossFoundationTests: XCTestCase {
         // error on Linux: Type mismatch: inferred type is () -> String but String was expected
         // it seems to be inferring the type as a () -> String
         //XCTAssertEqual(1 + 2, 3, "math should work" as String)
-        XCTAssertEqual(1 + 2, 3)
+        XCTAssertEqual(1 + 2 as Int, 3 as Int)
     }
 
     @Test fun testStringPadding() {
         XCTAssertEqual("abc++", "abc".pad(5, "+"))
+    }
+
+    @Test fun testProcessInfo() {
+        println(
+            "testProcessInfo: userName: ${ProcessInfo.processInfo.userName} hostName: ${ProcessInfo.processInfo.hostName}")
+        XCTAssertNotEqual("", ProcessInfo.processInfo.userName)
+        XCTAssertNotEqual("", ProcessInfo.processInfo.hostName)
     }
 
     @Test fun testURLs() {
