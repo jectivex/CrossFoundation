@@ -43,7 +43,8 @@ final class CrossFoundationTests: XCTestCase {
 
         // error on Linux: Type mismatch: inferred type is () -> String but String was expected
         // it seems to be inferring the type as a () -> String
-        XCTAssertEqual(1 + 2, 3, "math should work" as String)
+        //XCTAssertEqual(1 + 2, 3, "math should work" as String)
+        XCTAssertEqual(1 + 2, 3)
     }
 
     func testStringPadding() {
