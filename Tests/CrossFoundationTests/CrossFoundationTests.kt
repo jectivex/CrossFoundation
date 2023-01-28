@@ -39,17 +39,21 @@ internal class CrossFoundationTests {    //fun XCTUnwrap(a: Any?) = assertNotNul
         XCTAssertNotEqual("X", "Y")
 
         open class SimpleClass {
-            constructor() {
+            val value: Int
+
+            constructor(value: Int) {
+                this.value = value
             }
         }
 
-        val a: SimpleClass = SimpleClass()
+        val a: SimpleClass = SimpleClass(value = 1)
 
         //XCTAssertIdentical(a, a, "a should be a") // erorr on Linux: Type mismatch: inferred type is () -> String but String was expected
         XCTAssertIdentical(a, a)
 
-        val b: SimpleClass = SimpleClass()
+        val b: SimpleClass = SimpleClass(value = 1)
 
+        //        XCTAssertEqual(a, b)
         XCTAssertNotIdentical(a, b)
 
         // not supported by JUnit

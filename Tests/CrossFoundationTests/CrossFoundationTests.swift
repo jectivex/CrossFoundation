@@ -14,14 +14,18 @@ final class CrossFoundationTests: XCTestCase {
         XCTAssertNotEqual("X", "Y")
 
         class SimpleClass {
-            init() { }
+            let value: Int
+            init(value: Int) { self.value = value }
+
         }
-        let a = SimpleClass()
+
+        let a = SimpleClass(value: 1)
 
         //XCTAssertIdentical(a, a, "a should be a") // erorr on Linux: Type mismatch: inferred type is () -> String but String was expected
         XCTAssertIdentical(a, a)
 
-        let b = SimpleClass()
+        let b = SimpleClass(value: 1)
+//        XCTAssertEqual(a, b)
         XCTAssertNotIdentical(a, b)
 
         // not supported by JUnit
