@@ -50,10 +50,16 @@ final class CrossFoundationTests: XCTestCase {
         XCTAssertEqual("abc++", "abc".pad(to: 5, with: "+"))
     }
 
+    /// Is this is the Java runtime on Linux
+    var isLinuxJava: Bool {
+        ProcessInfo.processInfo.isJavaRuntime == true && ProcessInfo.processInfo.osName == "Linux"
+    }
+
     func testProcessInfo() throws {
-        print("testProcessInfo: userName: \(ProcessInfo.processInfo.userName) hostName: \(ProcessInfo.processInfo.hostName)")
+        print("testProcessInfo: userName: \(ProcessInfo.processInfo.userName) hostName: \(ProcessInfo.processInfo.hostName) osName: \(ProcessInfo.processInfo.osName ?? "")")
         XCTAssertNotEqual("", ProcessInfo.processInfo.userName)
         XCTAssertNotEqual("", ProcessInfo.processInfo.hostName)
+        XCTAssertNotEqual("", ProcessInfo.processInfo.osName)
     }
 
     func testURLs() throws {

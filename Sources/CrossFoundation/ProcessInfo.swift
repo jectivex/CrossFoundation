@@ -13,8 +13,17 @@ public final class ProcessInfo {
         java.lang.System.getProperty("user.name")
     }
 
+    public var osName: String? {
+        java.lang.System.getProperty("os.name")
+    }
+
     public var hostName: String {
         java.net.InetAddress.getLocalHost().getHostName()
+    }
+
+    /// Whether we are currently running in a JVM
+    public var isJavaRuntime: Bool {
+        true
     }
 
 //    public var hostType: HostType? {
@@ -28,6 +37,14 @@ import class Foundation.ProcessInfo
 public typealias ProcessInfo = Foundation.ProcessInfo
 
 extension ProcessInfo {
+    /// Whether we are currently running in a JVM
+    public var isJavaRuntime: Bool {
+        false
+    }
+
+    public var osName: String? {
+        nil
+    }
 }
 
 #endif

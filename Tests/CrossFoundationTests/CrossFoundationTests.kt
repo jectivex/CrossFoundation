@@ -61,11 +61,15 @@ internal class CrossFoundationTests: XCTestCase {
         XCTAssertEqual("abc++", "abc".pad(5, "+"))
     }
 
+    open val isLinuxJava: Boolean
+        get() = ProcessInfo.processInfo.isJavaRuntime == true && ProcessInfo.processInfo.osName == "Linux"
+
     @Test fun testProcessInfo() {
         println(
-            "testProcessInfo: userName: ${ProcessInfo.processInfo.userName} hostName: ${ProcessInfo.processInfo.hostName}")
+            "testProcessInfo: userName: ${ProcessInfo.processInfo.userName} hostName: ${ProcessInfo.processInfo.hostName} osName: ${ProcessInfo.processInfo.osName ?: ""}")
         XCTAssertNotEqual("", ProcessInfo.processInfo.userName)
         XCTAssertNotEqual("", ProcessInfo.processInfo.hostName)
+        XCTAssertNotEqual("", ProcessInfo.processInfo.osName)
     }
 
     @Test fun testURLs() {

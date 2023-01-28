@@ -11,8 +11,12 @@ class ProcessInfo {
 
     open val userName: String
         get() = java.lang.System.getProperty("user.name")
+    open val osName: String?
+        get() = java.lang.System.getProperty("os.name")
     open val hostName: String
         get() = java.net.InetAddress.getLocalHost().getHostName()
+    open val isJavaRuntime: Boolean
+        get() = true
 
     //    public var hostType: HostType? {
     //    }
