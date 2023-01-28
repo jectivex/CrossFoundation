@@ -72,7 +72,7 @@ internal class CrossFoundationTests {    //fun XCTUnwrap(a: Any?) = assertNotNul
 
     @Test fun testMath() {
         //XCTAssertEqual(0.1 + 1.0, 1.1)
-        XCTAssertEqual(1 + 2, 3)
+        XCTAssertEqual(1 + 2, 3, "math should work")
     }
 
     @Test fun testStringPadding() {

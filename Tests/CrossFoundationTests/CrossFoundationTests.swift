@@ -41,7 +41,7 @@ final class CrossFoundationTests: XCTestCase {
 
     func testMath() {
         //XCTAssertEqual(0.1 + 1.0, 1.1)
-        XCTAssertEqual(1 + 2, 3)
+        XCTAssertEqual(1 + 2, 3, "math should work")
     }
 
     func testStringPadding() {
