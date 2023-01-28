@@ -53,7 +53,8 @@ internal class CrossFoundationTests: XCTestCase {
         //XCTAssertEqual(0.1 + 1.0, 1.1)
         // error on Linux: Type mismatch: inferred type is () -> String but String was expected
         // it seems to be inferring the type as a () -> String
-        XCTAssertEqual(1 + 2, 3, "math should work" as String)
+        //XCTAssertEqual(1 + 2, 3, "math should work" as String)
+        XCTAssertEqual(1 + 2, 3)
     }
 
     @Test fun testStringPadding() {
@@ -128,23 +129,23 @@ internal fun XCTestCase.XCTAssertNotIdentical(a: Any?, b: Any?, msg: String) = o
 
 internal fun XCTestCase.XCTAssertEqual(a: Any?, b: Any?) = org.junit.Assert.assertEquals(a, b)
 internal fun XCTestCase.XCTAssertEqual(a: Any?, b: Any?, msg: String) = org.junit.Assert.assertEquals(msg, a, b)
-internal fun XCTestCase.XCTAssertEqual(a: Double, b: Double) = org.junit.Assert.assertEquals(a, b)
-internal fun XCTestCase.XCTAssertEqual(a: Double, b: Double, msg: String) = org.junit.Assert.assertEquals(msg, a, b)
-internal fun XCTestCase.XCTAssertEqual(a: Float, b: Float) = org.junit.Assert.assertEquals(a, b)
-internal fun XCTestCase.XCTAssertEqual(a: Float, b: Float, msg: String) = org.junit.Assert.assertEquals(msg, a, b)
-internal fun XCTestCase.XCTAssertEqual(a: Long, b: Long) = org.junit.Assert.assertEquals(a, b)
-internal fun XCTestCase.XCTAssertEqual(a: Long, b: Long, msg: String) = org.junit.Assert.assertEquals(msg, a, b)
-internal fun XCTestCase.XCTAssertEqual(a: Integer, b: Integer) = org.junit.Assert.assertEquals(a, b)
-internal fun XCTestCase.XCTAssertEqual(a: Integer, b: Integer, msg: String) = org.junit.Assert.assertEquals(msg, a, b)
+internal fun XCTestCase.XCTAssertEqual(a: kotlin.Double, b: kotlin.Double) = org.junit.Assert.assertEquals(a, b)
+internal fun XCTestCase.XCTAssertEqual(a: kotlin.Double, b: kotlin.Double, msg: String) = org.junit.Assert.assertEquals(msg, a, b)
+internal fun XCTestCase.XCTAssertEqual(a: kotlin.Float, b: kotlin.Float) = org.junit.Assert.assertEquals(a, b)
+internal fun XCTestCase.XCTAssertEqual(a: kotlin.Float, b: kotlin.Float, msg: String) = org.junit.Assert.assertEquals(msg, a, b)
+internal fun XCTestCase.XCTAssertEqual(a: kotlin.Long, b: kotlin.Long) = org.junit.Assert.assertEquals(a, b)
+internal fun XCTestCase.XCTAssertEqual(a: kotlin.Long, b: kotlin.Long, msg: String) = org.junit.Assert.assertEquals(msg, a, b)
+internal fun XCTestCase.XCTAssertEqual(a: kotlin.Int, b: kotlin.Int) = org.junit.Assert.assertEquals(a, b)
+internal fun XCTestCase.XCTAssertEqual(a: kotlin.Int, b: kotlin.Int, msg: String) = org.junit.Assert.assertEquals(msg, a, b)
 
 
 internal fun XCTestCase.XCTAssertNotEqual(a: Any?, b: Any?) = org.junit.Assert.assertNotEquals(a, b)
 internal fun XCTestCase.XCTAssertNotEqual(a: Any?, b: Any?, msg: String) = org.junit.Assert.assertNotEquals(msg, a, b)
-internal fun XCTestCase.XCTAssertNotEqual(a: Double, b: Double) = org.junit.Assert.assertNotEquals(a, b)
-internal fun XCTestCase.XCTAssertNotEqual(a: Double, b: Double, msg: String) = org.junit.Assert.assertNotEquals(msg, a, b)
-internal fun XCTestCase.XCTAssertNotEqual(a: Float, b: Float) = org.junit.Assert.assertNotEquals(a, b)
-internal fun XCTestCase.XCTAssertNotEqual(a: Float, b: Float, msg: String) = org.junit.Assert.assertNotEquals(msg, a, b)
-internal fun XCTestCase.XCTAssertNotEqual(a: Long, b: Long) = org.junit.Assert.assertNotEquals(a, b)
-internal fun XCTestCase.XCTAssertNotEqual(a: Long, b: Long, msg: String) = org.junit.Assert.assertNotEquals(msg, a, b)
-internal fun XCTestCase.XCTAssertNotEqual(a: Integer, b: Integer) = org.junit.Assert.assertNotEquals(a, b)
-internal fun XCTestCase.XCTAssertNotEqual(a: Integer, b: Integer, msg: String) = org.junit.Assert.assertNotEquals(msg, a, b)
+internal fun XCTestCase.XCTAssertNotEqual(a: kotlin.Double, b: kotlin.Double) = org.junit.Assert.assertNotEquals(a, b)
+internal fun XCTestCase.XCTAssertNotEqual(a: kotlin.Double, b: kotlin.Double, msg: String) = org.junit.Assert.assertNotEquals(msg, a, b)
+internal fun XCTestCase.XCTAssertNotEqual(a: kotlin.Float, b: kotlin.Float) = org.junit.Assert.assertNotEquals(a, b)
+internal fun XCTestCase.XCTAssertNotEqual(a: kotlin.Float, b: kotlin.Float, msg: String) = org.junit.Assert.assertNotEquals(msg, a, b)
+internal fun XCTestCase.XCTAssertNotEqual(a: kotlin.Long, b: kotlin.Long) = org.junit.Assert.assertNotEquals(a, b)
+internal fun XCTestCase.XCTAssertNotEqual(a: kotlin.Long, b: kotlin.Long, msg: String) = org.junit.Assert.assertNotEquals(msg, a, b)
+internal fun XCTestCase.XCTAssertNotEqual(a: kotlin.Int, b: kotlin.Int) = org.junit.Assert.assertNotEquals(a, b)
+internal fun XCTestCase.XCTAssertNotEqual(a: kotlin.Int, b: kotlin.Int, msg: String) = org.junit.Assert.assertNotEquals(msg, a, b)
