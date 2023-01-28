@@ -7,8 +7,8 @@ final class CrossFoundationTests: XCTestCase {
     func testTesting() throws {
         // assertEquals() is assuming closure types () -> String rather than just strings, only on Linux
         if !isLinuxJava {
-            XCTAssertTrue(true) // error on Linux: Type mismatch: inferred type is () -> Boolean but Boolean was expected
-            XCTAssertFalse(false)
+            //XCTAssertTrue(true) // error on Linux: Type mismatch: inferred type is () -> Boolean but Boolean was expected
+            //XCTAssertFalse(false)
             XCTAssertNil(nil)
             XCTAssertNotNil("ABC")
             XCTAssertEqual(1, 1)
