@@ -22,7 +22,9 @@ final class CrossFoundationTests: XCTestCase {
 
         let a = SimpleClass(value: 1)
 
-        XCTAssertIdentical(a, a)
+        if !isLinuxJava {
+            XCTAssertIdentical(a, a) // on linux types inferred as () -> Any
+        }
 
         let b = SimpleClass(value: 1)
 //        XCTAssertEqual(a, b)

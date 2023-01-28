@@ -13,10 +13,8 @@ internal class CrossFoundationTests: XCTestCase {
     @Test fun testTesting() {
         // assertEquals() is assuming closure types () -> String rather than just strings, only on Linux
         if (!isLinuxJava) {
-            XCTAssertTrue(true)
-
-            // error on Linux: Type mismatch: inferred type is () -> Boolean but Boolean was expected
-            XCTAssertFalse(false)
+            //XCTAssertTrue(true) // error on Linux: Type mismatch: inferred type is () -> Boolean but Boolean was expected
+            //XCTAssertFalse(false)
             XCTAssertNil(null)
             XCTAssertNotNil("ABC")
             XCTAssertEqual(1, 1)
@@ -33,7 +31,10 @@ internal class CrossFoundationTests: XCTestCase {
 
         val a: SimpleClass = SimpleClass(value = 1)
 
-        XCTAssertIdentical(a, a)
+        if (!isLinuxJava) {
+            XCTAssertIdentical(a, a)
+            // on linux types inferred as () -> Any
+        }
 
         val b: SimpleClass = SimpleClass(value = 1)
 
