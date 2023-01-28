@@ -5,15 +5,12 @@ final class CrossFoundationTests: XCTestCase {
 
     /// Tests to ensure that `XCTest.XCTAssert*` statements are correctly translated into their `JUnit.assert*` equivalents.
     func testTesting() throws {
-        // assertEquals() is assuming closure types () -> String rather than just strings, only on Linux
-        if !isLinuxJava {
-            //XCTAssertTrue(true) // error on Linux: Type mismatch: inferred type is () -> Boolean but Boolean was expected
-            //XCTAssertFalse(false)
-            XCTAssertNil(nil)
-            XCTAssertNotNil("ABC")
-            XCTAssertEqual(1, 1)
-            XCTAssertNotEqual("X", "Y")
-        }
+        XCTAssertTrue(true)
+        XCTAssertFalse(false)
+        XCTAssertNil(nil)
+        XCTAssertNotNil("ABC")
+        XCTAssertEqual(1, 1)
+        XCTAssertNotEqual("X", "Y")
 
         class SimpleClass {
             let value: Int
@@ -22,9 +19,7 @@ final class CrossFoundationTests: XCTestCase {
 
         let a = SimpleClass(value: 1)
 
-        if !isLinuxJava {
-            XCTAssertIdentical(a, a) // on linux types inferred as () -> Any
-        }
+        XCTAssertIdentical(a, a) // on linux types inferred as () -> Any
 
         let b = SimpleClass(value: 1)
 //        XCTAssertEqual(a, b)
