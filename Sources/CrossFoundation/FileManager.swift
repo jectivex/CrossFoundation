@@ -25,13 +25,31 @@ public final class FileManager {
         let path: String
     }
 }
+
+
+/// The system temporary folder
+public func NSTemporaryDirectory() -> String {
+    java.lang.System.getProperty("java.io.tmpdir")
+}
+
+/// The user's home directory.
+public func NSHomeDirectory() -> String {
+    java.lang.System.getProperty("user.home")
+}
+
+/// The current user name.
+public func NSUserName() -> String {
+    java.lang.System.getProperty("user.name")
+}
+
+
 #else
 import class Foundation.FileManager
 
 public typealias FileManager = Foundation.FileManager
 
 public extension FileManager {
-    
+
 //    @available(*, deprecated, message: "file URLs not yet implemented on Kotlin side")
 //    func removeItem(at url: URL) throws {
 //        fatalError("unavailable in Kotlin")

@@ -30,13 +30,21 @@ public struct Data : RawRepresentable {
 //        if url.isFileURL {
 //            return Data(java.io.File(url.path).readBytes())
 //        } else {
-        // this seems to work for both file URLs and network URLs
-        return Data(url.rawValue.openConnection().getInputStream().readBytes())
+//        return Data(url.rawValue.openConnection().getInputStream().readBytes())
 //        }
+
+        // this seems to work for both file URLs and network URLs
+        return Data(url.rawValue.readBytes())
     }
 
     /// Foundation uses `count`, Java uses `size`.
     public var count: Int { rawValue.size }
+}
+
+public extension String {
+    public static func `init`(contentsOfURL url: URL) throws -> String {
+        return url.rawValue.readText()
+    }
 }
 
 #else

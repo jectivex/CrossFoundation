@@ -29,12 +29,12 @@ public struct URL : RawRepresentable {
         rawValue.host
     }
 
-    public var pathExtension: String? {
-        rawValue.path.split(".").last()
-    }
-
     public var lastPathComponent: String? {
         rawValue.path.split("/").last()
+    }
+
+    public var pathExtension: String? {
+        lastPathComponent?.split(".")?.last()
     }
 
     public var isFileURL: Bool {

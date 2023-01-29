@@ -25,3 +25,9 @@ class FileManager {
         val path: String
     ): java.io.IOException()
 }
+
+fun NSTemporaryDirectory(): String = java.lang.System.getProperty("java.io.tmpdir")
+
+fun NSHomeDirectory(): String = java.lang.System.getProperty("user.home")
+
+fun NSUserName(): String = java.lang.System.getProperty("user.name")

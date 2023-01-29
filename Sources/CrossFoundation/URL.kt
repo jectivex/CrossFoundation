@@ -19,10 +19,10 @@ package CrossFoundation
         get() = rawValue.path
     val host: String?
         get() = rawValue.host
-    val pathExtension: String?
-        get() = rawValue.path.split(".").last()
     val lastPathComponent: String?
         get() = rawValue.path.split("/").last()
+    val pathExtension: String?
+        get() = lastPathComponent?.split(".")?.last()
     val isFileURL: Boolean
         get() = rawValue.`protocol` == "file"
 }

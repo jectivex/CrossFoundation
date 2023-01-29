@@ -37,6 +37,12 @@ internal class CrossFoundationTests: XCTestCase {
         XCTAssertNotIdentical(a, b)
     }
 
+    @Test fun testFileManager() {
+        val fm: FileManager = FileManager.default
+        //        let tmp: String = fm.tmpdir // NSTemporaryDirectory()
+        //        XCTAssertNotEqual("", tmp)
+    }
+
     @Test fun testRandom() {
         XCTAssertNotEqual(
             Random.shared.randomDouble(),
@@ -79,7 +85,16 @@ internal class CrossFoundationTests: XCTestCase {
         //XCTAssertEqual(0, try Data(contentsOfFile: "/dev/null").count) // parameter name is lost externally
         XCTAssertNotEqual(0, Data.init("/etc/hosts").count)
         XCTAssertNotEqual(0, Data.init(URL.init("/etc/hosts", false)).count)
-        XCTAssertNotEqual(0, Data.init(URL.init("https://www.example.com")!!).count)
+
+        val url: URL = URL.init("https://www.example.com")!!
+        val urlData: Data = Data.init(url)
+
+        println("downloaded url size: ${urlData.count}")
+
+        // ~1256
+        XCTAssertNotEqual(0, urlData.count)
+
+        //let str: String = try String.init(contentsOf: url)
     }
 
     @Test fun testUUID() {

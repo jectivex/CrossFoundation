@@ -11,13 +11,17 @@ package CrossFoundation
             //        if url.isFileURL {
             //            return Data(java.io.File(url.path).readBytes())
             //        } else {
-            // this seems to work for both file URLs and network URLs
-            return Data(url.rawValue.openConnection().getInputStream().readBytes())
-
+            //        return Data(url.rawValue.openConnection().getInputStream().readBytes())
             //        }
+            // this seems to work for both file URLs and network URLs
+            return Data(url.rawValue.readBytes())
         }
     }
 
     val count: Int
         get() = rawValue.size
+}
+
+fun String.Companion.`init`(url: URL): String {
+    return url.rawValue.readText()
 }
