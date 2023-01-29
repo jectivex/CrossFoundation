@@ -2,7 +2,6 @@
 // GENERATED FILE; EDITS WILL BE OVERWRITTEN
 // =========================================
 package CrossFoundation
-
 // MARK: URL
 @JvmInline value class URL(
     val rawValue: java.net.URL

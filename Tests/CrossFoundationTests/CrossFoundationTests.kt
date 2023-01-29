@@ -2,7 +2,6 @@
 // GENERATED FILE; EDITS WILL BE OVERWRITTEN
 // =========================================
 package CrossFoundation
-
 import kotlin.test.*
 import org.junit.Test
 import org.junit.Assert

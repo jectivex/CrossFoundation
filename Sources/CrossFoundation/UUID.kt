@@ -2,7 +2,6 @@
 // GENERATED FILE; EDITS WILL BE OVERWRITTEN
 // =========================================
 package CrossFoundation
-
 // MARK: UUID
 @JvmInline value class UUID(
     val rawValue: java.util.UUID = java.util.UUID.randomUUID()

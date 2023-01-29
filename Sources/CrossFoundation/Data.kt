@@ -2,7 +2,6 @@
 // GENERATED FILE; EDITS WILL BE OVERWRITTEN
 // =========================================
 package CrossFoundation
-
 // MARK: Data
 @JvmInline value class Data(
     val rawValue: kotlin.ByteArray

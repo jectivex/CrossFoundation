@@ -2,7 +2,6 @@
 // GENERATED FILE; EDITS WILL BE OVERWRITTEN
 // =========================================
 package CrossFoundation
-
 // MARK: JSON
 import kotlinx.serialization.*
 import kotlinx.serialization.json.Json

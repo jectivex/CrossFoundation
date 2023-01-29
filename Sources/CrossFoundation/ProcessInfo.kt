@@ -2,7 +2,6 @@
 // GENERATED FILE; EDITS WILL BE OVERWRITTEN
 // =========================================
 package CrossFoundation
-
 // MARK: ProcessInfo
 class ProcessInfo {
     companion object {
