@@ -67,12 +67,18 @@ final class CrossFoundationTests: XCTestCase {
     func testData() throws {
         //XCTAssertEqual(0, try Data(contentsOfFile: "/dev/null").count) // parameter name is lost externally
         XCTAssertNotEqual(0, try Data.init(contentsOfFile: "/etc/hosts").count)
-        XCTAssertNotEqual(0, try Data.init(contentsOf: URL.init(fileURLWithPath: "/etc/hosts", isDirectory: false)).count)
+        let hostsFile: URL = URL.init(fileURLWithPath: "/etc/hosts", isDirectory: false)
+        XCTAssertNotEqual(0, try Data.init(contentsOf: hostsFile).count)
 
         let url: URL = URL.init(string: "https://www.example.com")!
         let urlData: Data = try Data.init(contentsOf: url)
         print("downloaded url size: \(urlData.count)") // ~1256
         XCTAssertNotEqual(0, urlData.count)
+
+        let url2: URL = URL.init(string: "domains/reserved", relativeTo: URL.init(string: "https://www.iana.org"))!
+        let url2Data: Data = try Data.init(contentsOf: url2)
+        print("downloaded url2 size: \(url2Data.count)") // ~1256
+        XCTAssertNotEqual(0, url2Data.count)
 
         //let str: String = try String.init(contentsOf: url)
     }

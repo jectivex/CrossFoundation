@@ -13,6 +13,10 @@ public struct URL : RawRepresentable {
         URL(java.net.URL(string))
     }
 
+    public static func `init`(string: String, relativeTo: URL) -> URL {
+        URL(java.net.URL(relativeTo.rawValue, string))
+    }
+
     public static func `init`(fileURLWithPath path: String, isDirectory: Bool) -> URL {
         return URL(java.net.URL("file://" + path)) // TODO: isDirectory handling?
     }

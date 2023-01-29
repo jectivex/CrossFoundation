@@ -7,6 +7,8 @@ package CrossFoundation
     companion object {
         fun `init`(string: String): URL = URL(java.net.URL(string))
 
+        fun `init`(string: String, relativeTo: URL): URL = URL(java.net.URL(relativeTo.rawValue, string))
+
         fun `init`(path: String, isDirectory: Boolean): URL {
             return URL(java.net.URL("file://" + path))
             // TODO: isDirectory handling?

@@ -84,7 +84,10 @@ internal class CrossFoundationTests: XCTestCase {
     @Test fun testData() {
         //XCTAssertEqual(0, try Data(contentsOfFile: "/dev/null").count) // parameter name is lost externally
         XCTAssertNotEqual(0, Data.init("/etc/hosts").count)
-        XCTAssertNotEqual(0, Data.init(URL.init("/etc/hosts", false)).count)
+
+        val hostsFile: URL = URL.init("/etc/hosts", false)
+
+        XCTAssertNotEqual(0, Data.init(hostsFile).count)
 
         val url: URL = URL.init("https://www.example.com")!!
         val urlData: Data = Data.init(url)
@@ -93,6 +96,14 @@ internal class CrossFoundationTests: XCTestCase {
 
         // ~1256
         XCTAssertNotEqual(0, urlData.count)
+
+        val url2: URL = URL.init("domains/reserved", URL.init("https://www.iana.org"))!!
+        val url2Data: Data = Data.init(url2)
+
+        println("downloaded url2 size: ${url2Data.count}")
+
+        // ~1256
+        XCTAssertNotEqual(0, url2Data.count)
 
         //let str: String = try String.init(contentsOf: url)
     }
