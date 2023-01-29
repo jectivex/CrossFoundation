@@ -2,8 +2,7 @@ package CrossFoundation
 
 // MARK: JSON
 import kotlinx.serialization.*
-
-// gryphon Xinsert: import kotlinx.serialization.json.JSON
+import kotlinx.serialization.json.Json
 @kotlinx.serialization.Serializable
 
 sealed class JSum {
@@ -87,10 +86,8 @@ typealias JObj = Map<String, JSum>
 //    public func toJSON() throws -> String {
 //        encodeJSON(self)
 //    }
-//public let encodeJSON = kotlinx.serialization.json.Json.encodeToString
-//public func encodeJSON(_ value: Any) -> String {
-//    kotlinx.serialization.json.Json.encodeToString(value)
-//}
+inline fun <reified T: @Serializable Any> encodeJSON(value: T): String { return kotlinx.serialization.json.Json.encodeToString(value) }
+
 // cannot use these because transpiler balks on same-named var
 //    /// Returns the underlying String payload if this is a `JSum.str`, otherwise `.none`
 //    @inlinable var str: String? {

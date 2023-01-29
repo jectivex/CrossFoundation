@@ -1,7 +1,7 @@
 // MARK: JSON
 
 // gryphon insert: import kotlinx.serialization.*
-// gryphon Xinsert: import kotlinx.serialization.json.JSON
+// gryphon insert: import kotlinx.serialization.json.Json
 
 /// A JSON type, which can be null, boolean, number, string, array, or object.
 // gryphon insert: @kotlinx.serialization.Serializable
@@ -68,12 +68,7 @@ extension JSum : Codable {
 //    }
 }
 
-//public let encodeJSON = kotlinx.serialization.json.Json.encodeToString
-
-//public func encodeJSON(_ value: Any) -> String {
-//    kotlinx.serialization.json.Json.encodeToString(value)
-//}
-
+// gryphon insert: inline fun <reified T: @Serializable Any> encodeJSON(value: T): String { return kotlinx.serialization.json.Json.encodeToString(value) }
 
 #else
 
