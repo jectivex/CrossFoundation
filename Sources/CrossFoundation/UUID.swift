@@ -10,6 +10,10 @@ public struct UUID : RawRepresentable {
         self.rawValue = rawValue
     }
 
+    public static func `init`(uuidString: String) -> UUID {
+        UUID(rawValue: java.util.UUID.fromString(uuidString))
+    }
+
     public var uuidString: String {
         // java.util.UUID is lowercase, Foundation.UUID is uppercase
         return rawValue.toString().uppercase()

@@ -87,6 +87,9 @@ final class CrossFoundationTests: XCTestCase {
         XCTAssertNotEqual(UUID(), UUID())
         XCTAssertNotEqual("", UUID().uuidString)
         print("UUID: \(UUID().uuidString)")
+
+        let uuid: UUID? = UUID.init(uuidString: "d500d1f7-ddb0-439b-ab90-22fdbe5b5790")
+        XCTAssertEqual("D500D1F7-DDB0-439B-AB90-22FDBE5B5790", uuid?.uuidString)
     }
 
     func testDate() throws {
@@ -98,11 +101,6 @@ final class CrossFoundationTests: XCTestCase {
     }
 
     func testJSON() throws {
-        XCTAssertEqual(JSum.num(1.0), JSum.num(1.0), "JSum should equal")
-        XCTAssertNotEqual(JSum.num(1.0), JSum.num(2.0), "JSum should not equal")
-
-        XCTAssertNotEqual(JSum.str("ABC"), JSum.num(1.0))
-
         // gryphon insert: @kotlinx.serialization.Serializable
         struct JSONDemo : Encodable {
             var num: Int
@@ -123,6 +121,11 @@ final class CrossFoundationTests: XCTestCase {
         """, try encodeJSON(demo))
     }
 
+    func testJSum() throws {
+        XCTAssertEqual(JSum.num(1.0), JSum.num(1.0), "JSum should equal")
+        XCTAssertNotEqual(JSum.num(1.0), JSum.num(2.0), "JSum should not equal")
+        XCTAssertNotEqual(JSum.str("ABC"), JSum.num(1.0))
+    }
 }
 
 #if !GRYPHON

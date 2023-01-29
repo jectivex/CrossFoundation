@@ -1,3 +1,6 @@
+// =========================================
+// GENERATED FILE; EDITS WILL BE OVERWRITTEN
+// =========================================
 package CrossFoundation
 
 import kotlin.test.*
@@ -112,6 +115,10 @@ internal class CrossFoundationTests: XCTestCase {
         XCTAssertNotEqual(UUID(), UUID())
         XCTAssertNotEqual("", UUID().uuidString)
         println("UUID: ${UUID().uuidString}")
+
+        val uuid: UUID? = UUID.init("d500d1f7-ddb0-439b-ab90-22fdbe5b5790")
+
+        XCTAssertEqual("D500D1F7-DDB0-439B-AB90-22FDBE5B5790", uuid?.uuidString)
     }
 
     @Test fun testDate() {
@@ -124,10 +131,6 @@ internal class CrossFoundationTests: XCTestCase {
     }
 
     @Test fun testJSON() {
-        XCTAssertEqual(JSum.num(1.0), JSum.num(1.0), "JSum should equal")
-        XCTAssertNotEqual(JSum.num(1.0), JSum.num(2.0), "JSum should not equal")
-        XCTAssertNotEqual(JSum.str("ABC"), JSum.num(1.0))
-
         @kotlinx.serialization.Serializable
 
         data class JSONDemo(
@@ -143,6 +146,12 @@ internal class CrossFoundationTests: XCTestCase {
         demo.str = "XYZ"
 
         XCTAssertEqual("""{"num":123,"str":"XYZ"}""", encodeJSON(demo))
+    }
+
+    @Test fun testJSum() {
+        XCTAssertEqual(JSum.num(1.0), JSum.num(1.0), "JSum should equal")
+        XCTAssertNotEqual(JSum.num(1.0), JSum.num(2.0), "JSum should not equal")
+        XCTAssertNotEqual(JSum.str("ABC"), JSum.num(1.0))
     }
 }
 

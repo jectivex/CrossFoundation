@@ -1,3 +1,6 @@
+// =========================================
+// GENERATED FILE; EDITS WILL BE OVERWRITTEN
+// =========================================
 package CrossFoundation
 
 fun String.pad(cellSpan: Int, padding: String = " ", rightAlign: Boolean = false): String {
