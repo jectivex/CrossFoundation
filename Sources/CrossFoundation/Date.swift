@@ -4,8 +4,9 @@
 public typealias TimeInterval = Double
 // public typealias Date = java.util.Date
 
-public struct Date { // TODO: RawRepresentable to generate `@JvmInline value class`
-    public var rawValue: java.util.Date = java.util.Date()
+// gryphon insert: @JvmInline
+public struct Date: RawRepresentable {
+    public let rawValue: java.util.Date = java.util.Date()
 
     public init(rawValue: java.util.Date) {
         self.rawValue = rawValue

@@ -12,8 +12,9 @@ import FoundationNetworking
 /// A byte buffer in memory.
 ///
 /// This is a `Foundation.Data` wrapper around `kotlin.ByteArray`.
-public struct Data { // TODO: RawRepresentable to generate `@JvmInline value class`
-    public var rawValue: kotlin.ByteArray
+// gryphon insert: @JvmInline
+public struct Data : RawRepresentable {
+    public let rawValue: kotlin.ByteArray
 
     public init(rawValue: kotlin.ByteArray) {
         self.rawValue = rawValue

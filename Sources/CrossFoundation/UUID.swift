@@ -2,8 +2,9 @@
 
 #if SKIP
 
-public struct UUID { // TODO: RawRepresentable to generate `@JvmInline value class`
-    public var rawValue: java.util.UUID = java.util.UUID.randomUUID()
+// gryphon insert: @JvmInline
+public struct UUID : RawRepresentable {
+    public let rawValue: java.util.UUID = java.util.UUID.randomUUID()
 
     public init(rawValue: java.util.UUID) {
         self.rawValue = rawValue

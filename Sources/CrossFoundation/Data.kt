@@ -1,8 +1,8 @@
 package CrossFoundation
 
 // MARK: Data
-data class Data(
-    var rawValue: kotlin.ByteArray
+@JvmInline value class Data(
+    val rawValue: kotlin.ByteArray
 ) {
     companion object {
         fun `init`(filePath: String): Data = Data(java.io.File(filePath).readBytes())
@@ -18,7 +18,6 @@ data class Data(
         }
     }
 
-    // TODO: RawRepresentable to generate `@JvmInline value class`
     val count: Int
         get() = rawValue.size
 }

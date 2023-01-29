@@ -1,8 +1,8 @@
 package CrossFoundation
 
 // MARK: URL
-data class URL(
-    var rawValue: java.net.URL
+@JvmInline value class URL(
+    val rawValue: java.net.URL
 ) {
     companion object {
         fun `init`(string: String): URL = URL(java.net.URL(string))
@@ -13,7 +13,6 @@ data class URL(
         }
     }
 
-    // TODO: RawRepresentable to generate `@JvmInline value class`
     val absoluteString: String
         get() = rawValue.toExternalForm()
     val path: String

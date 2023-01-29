@@ -1,8 +1,9 @@
 // MARK: URL
 
 #if SKIP
-public struct URL { // TODO: RawRepresentable to generate `@JvmInline value class`
-    public var rawValue: java.net.URL
+// gryphon insert: @JvmInline
+public struct URL : RawRepresentable {
+    public let rawValue: java.net.URL
 
     public init(rawValue: java.net.URL) {
         self.rawValue = rawValue
