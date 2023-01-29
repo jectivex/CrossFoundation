@@ -16,6 +16,9 @@ class FileManager {
     }
 
     open fun removeItem(url: URL) {
+        if (java.io.File(url.path).delete() != true) {
+            throw UnableToDeleteFileError(url.path)
+        }
     }
 
     internal data class UnableToDeleteFileError(

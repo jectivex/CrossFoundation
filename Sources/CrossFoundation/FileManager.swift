@@ -16,6 +16,9 @@ public final class FileManager {
     }
 
     public func removeItem(atPath url: URL) throws {
+        if java.io.File(url.path).delete() != true {
+            throw UnableToDeleteFileError(path: url.path)
+        }
     }
 
     struct UnableToDeleteFileError : java.io.IOException {
@@ -28,11 +31,12 @@ import class Foundation.FileManager
 public typealias FileManager = Foundation.FileManager
 
 public extension FileManager {
-    @available(*, deprecated, message: "file URLs not yet implemented on Kotlin side")
-    func removeItem(at url: URL) throws {
-        fatalError("unavailable in Kotlin")
-        //try self.removeItem(at: url)
-    }
+    
+//    @available(*, deprecated, message: "file URLs not yet implemented on Kotlin side")
+//    func removeItem(at url: URL) throws {
+//        fatalError("unavailable in Kotlin")
+//        //try self.removeItem(at: url)
+//    }
 
 }
 #endif

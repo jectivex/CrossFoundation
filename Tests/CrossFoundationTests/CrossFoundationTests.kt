@@ -19,7 +19,7 @@ internal class CrossFoundationTests: XCTestCase {
         XCTAssertEqual(1, 1)
         XCTAssertNotEqual("X", "Y")
 
-        open class SimpleClass {
+        class SimpleClass {
             val value: Int
 
             constructor(value: Int) {
@@ -34,14 +34,7 @@ internal class CrossFoundationTests: XCTestCase {
         // on linux types inferred as () -> Any
         val b: SimpleClass = SimpleClass(value = 1)
 
-        //        XCTAssertEqual(a, b)
         XCTAssertNotIdentical(a, b)
-
-        // not supported by JUnit
-        // XCTAssertGreaterThan(1, 0)
-        // XCTAssertLessThan(0, 1)
-        // XCTAssertLessThanOrEqual(1, 1)
-        // XCTAssertGreaterThanOrEqual(1, 1)
     }
 
     @Test fun testRandom() {

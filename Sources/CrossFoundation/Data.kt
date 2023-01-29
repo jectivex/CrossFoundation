@@ -1,7 +1,6 @@
 package CrossFoundation
 
 // MARK: Data
-// public typealias Data = kotlin.ByteArray
 data class Data(
     var rawValue: kotlin.ByteArray
 ) {

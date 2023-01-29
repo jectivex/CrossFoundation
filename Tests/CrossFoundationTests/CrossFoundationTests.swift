@@ -12,24 +12,16 @@ final class CrossFoundationTests: XCTestCase {
         XCTAssertEqual(1, 1)
         XCTAssertNotEqual("X", "Y")
 
-        class SimpleClass {
+        final class SimpleClass {
             let value: Int
             init(value: Int) { self.value = value }
         }
 
         let a = SimpleClass(value: 1)
-
         XCTAssertIdentical(a, a) // on linux types inferred as () -> Any
 
         let b = SimpleClass(value: 1)
-//        XCTAssertEqual(a, b)
         XCTAssertNotIdentical(a, b)
-
-        // not supported by JUnit
-        // XCTAssertGreaterThan(1, 0)
-        // XCTAssertLessThan(0, 1)
-        // XCTAssertLessThanOrEqual(1, 1)
-        // XCTAssertGreaterThanOrEqual(1, 1)
     }
 
     func testRandom() throws {

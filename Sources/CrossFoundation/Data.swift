@@ -1,7 +1,13 @@
 // MARK: Data
 
+#if !GRYPHON
+#if canImport(FoundationNetworking)
+// otherwise, on Linux: “Fatal error: You must link or load module FoundationNetworking to load non-file: URL content using String(contentsOf:…), Data(contentsOf:…), etc.”
+import FoundationNetworking
+#endif
+#endif
+
 #if SKIP
-// public typealias Data = kotlin.ByteArray
 
 /// A byte buffer in memory.
 ///
@@ -45,6 +51,5 @@ extension Data {
         self = try NSData(contentsOfFile: filePath, options: []) as Data
     }
 }
-
 
 #endif
