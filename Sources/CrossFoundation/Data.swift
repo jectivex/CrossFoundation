@@ -25,7 +25,6 @@ public struct Data { // TODO: RawRepresentable to generate `@JvmInline value cla
     }
 
     /// static init until constructor overload works
-    /// TODO: network URL
     public static func `init`(contentsOfURL url: URL) throws -> Data {
 //        if url.isFileURL {
 //            return Data(java.io.File(url.path).readBytes())
