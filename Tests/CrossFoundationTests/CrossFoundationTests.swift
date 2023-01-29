@@ -62,20 +62,15 @@ final class CrossFoundationTests: XCTestCase {
         XCTAssertEqual("/path/to/file.ext", url?.path)
         XCTAssertEqual("www.example.org", url?.host)
         XCTAssertEqual("ext", url?.pathExtension)
-
-        //XCTAssertEqual("file.ext", url?.lastPathComponent)
-        //XCTAssertEqual(false, url?.isFileURL)
-
-        //XCTAssertEqual(nil, url?.relativePath) // should give a deprecation warning: no kotlin equivalent
-
-        //XCTAssertEqual(nil, url?.query)
-        //XCTAssertEqual(nil, url?.port)
+        XCTAssertEqual("file.ext", url?.lastPathComponent)
+        XCTAssertEqual(false, url?.isFileURL)
     }
 
     func testData() throws {
         //XCTAssertEqual(0, try Data(contentsOfFile: "/dev/null").count) // parameter name is lost externally
         XCTAssertNotEqual(0, try Data.init(contentsOfFile: "/etc/hosts").count)
         XCTAssertNotEqual(0, try Data.init(contentsOf: URL.init(fileURLWithPath: "/etc/hosts", isDirectory: false)).count)
+        XCTAssertNotEqual(0, try Data.init(contentsOf: URL.init(string: "https://www.example.com")!).count)
     }
 
     func testUUID() throws {

@@ -83,9 +83,6 @@ sealed class JSum {
 
 typealias JObj = Map<String, JSum>
 
-//    public func toJSON() throws -> String {
-//        encodeJSON(self)
-//    }
 inline fun <reified T: @Serializable Any> encodeJSON(value: T): String { return kotlinx.serialization.json.Json.encodeToString(value) }
 
 // cannot use these because transpiler balks on same-named var

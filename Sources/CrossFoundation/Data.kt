@@ -8,7 +8,15 @@ data class Data(
     companion object {
         fun `init`(filePath: String): Data = Data(java.io.File(filePath).readBytes())
 
-        fun `init`(url: URL): Data = Data(java.io.File(url.path).readBytes())
+        fun `init`(url: URL): Data {
+            //        if url.isFileURL {
+            //            return Data(java.io.File(url.path).readBytes())
+            //        } else {
+            // this seems to work for both file URLs and network URLs
+            return Data(url.rawValue.openConnection().getInputStream().readBytes())
+
+            //        }
+        }
     }
 
     // TODO: RawRepresentable to generate `@JvmInline value class`

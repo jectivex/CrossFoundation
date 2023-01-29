@@ -62,12 +62,6 @@ public typealias JObj = [String: JSum]
 
 #if SKIP
 
-extension JSum : Codable {
-//    public func toJSON() throws -> String {
-//        encodeJSON(self)
-//    }
-}
-
 // gryphon insert: inline fun <reified T: @Serializable Any> encodeJSON(value: T): String { return kotlinx.serialization.json.Json.encodeToString(value) }
 
 #else

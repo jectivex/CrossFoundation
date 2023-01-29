@@ -21,7 +21,12 @@ public struct Data { // TODO: RawRepresentable to generate `@JvmInline value cla
     /// static init until constructor overload works
     /// TODO: network URL
     public static func `init`(contentsOfURL url: URL) throws -> Data {
-        Data(java.io.File(url.path).readBytes())
+//        if url.isFileURL {
+//            return Data(java.io.File(url.path).readBytes())
+//        } else {
+        // this seems to work for both file URLs and network URLs
+        return Data(url.rawValue.openConnection().getInputStream().readBytes())
+//        }
     }
 
     /// Foundation uses `count`, Java uses `size`.
