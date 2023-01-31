@@ -102,12 +102,15 @@ final class CrossFoundationTests: XCTestCase {
 
     func testJSON() throws {
         // gryphon insert: @kotlinx.serialization.Serializable
-        struct JSONDemo : Encodable {
+        struct JSONDemo : Equatable, Encodable {
             var num: Int
             var str: String
         }
 
         var demo: JSONDemo = JSONDemo(num: 123, str: "ABC")
+
+        //let encoder = JSONEncoder()
+        //try encoder.encode()
 
         // note: Kotlin serialization maintains field order in JSON, whereas Swift is either random or ordered by field name
         XCTAssertEqual("""

@@ -139,6 +139,8 @@ internal class CrossFoundationTests: XCTestCase {
 
         var demo: JSONDemo = JSONDemo(num = 123, str = "ABC")
 
+        //let encoder = JSONEncoder()
+        //try encoder.encode()
         // note: Kotlin serialization maintains field order in JSON, whereas Swift is either random or ordered by field name
         XCTAssertEqual("""{"num":123,"str":"ABC"}""", encodeJSON(demo))
 
