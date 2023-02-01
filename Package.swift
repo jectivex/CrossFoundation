@@ -15,7 +15,7 @@ let package = Package(
     targets: [
         .target(name: "CrossFoundation", dependencies: [],
         swiftSettings: [
-            .unsafeFlags(["-emit-symbol-graph", "-emit-symbol-graph-dir", ".build", "-symbol-graph-minimum-access-level", "internal"], .when(configuration: .debug)),
+            .unsafeFlags(["-emit-symbol-graph", "-include-spi-symbols", "-emit-symbol-graph-dir", ".build", "-symbol-graph-minimum-access-level", "internal"], .when(platforms: [.macOS, .linux], configuration: .debug)),
         ]),
         .testTarget(name: "CrossFoundationTests", dependencies: [
             "CrossFoundation",
